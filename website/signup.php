@@ -4,7 +4,6 @@ session_start();
 include("connection.php");
 include("functions.php");
 
-// Veidojam savienojumu ar datubāzi
 $con = mysqli_connect("localhost", "root", "", "login_db");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -17,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $query = "INSERT INTO users (user_id,user_name,password) VALUES ('$user_id','$user_name','$hashed_password')";
 
-        // Veicam datu pieprasījumu, izmantojot savienojuma objektu
         mysqli_query($con, $query);
 
         header("Location: login.php");
@@ -33,8 +31,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Registreties</title>
     <style>
+        body {
+            color: #ccc;
+            background-image: url(compute-ea4c57a4.png);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #box {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
         .button {
             background-color: #4CAF50;
             border: none;
@@ -54,31 +70,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         .text {
-            color: blue;
+            color: black;
             font-size: 18px;
             font-family: Arial, sans-serif;
-        }
-
-        .box {
-            width: 200px;
-            height: 200px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 20px;
         }
     </style>
 </head>
 <body>
 <div id="box">
     <form method="post">
-        <div style="font-size: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; width: 300px; ">Signup</div>
+        <div style="font-size: 20px; padding: 20px;">Registreties</div>
 
-        <input id="text" type="text" name="user_name"><br><br>
-        <input id="text" type="password" name="password"><br><br>
+        <input class="text" type="text" name="user_name" placeholder="Username" style="margin-bottom: 10px;"><br>
+        <input class="text" type="password" name="password" placeholder="Password" style="margin-bottom: 10px;"><br>
 
-        <input class="button" type="submit" name="signup">
+        <input class="button" type="submit" name="signup" value="Signup" style="margin-bottom: 10px;">
 
-        <a href="login.php">Click to Login </a>
+        <a href="login.php" style="color: white;">Click to Login </a>
     </form>
 </div>
+</body>
+</html>

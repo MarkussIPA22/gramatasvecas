@@ -2,18 +2,13 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$login_dbname = "login_db";
-$books_dbname = "books_db";
+$dbname = "login_db"; // Changed to login_db
 
-// Connection to login_db
-$con_login = mysqli_connect($dbhost, $dbuser, $dbpass, $login_dbname);
-if (!$con_login) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+// Create connection
+$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-// Connection to books_db
-$con_books = mysqli_connect($dbhost, $dbuser, $dbpass, $books_dbname);
-if (!$con_books) {
+// Check connection
+if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
 ?>

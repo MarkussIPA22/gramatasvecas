@@ -17,7 +17,7 @@ class Database {
     public function execute($query_string, $params){
     $query = $this->connection->prepare($query_string);
     $query->execute($params);
-    return $query->fetchAll() ?: []; // Return an empty array if fetchAll() returns false
+    return $query->fetchAll() ?: []; 
 }
 
 }
